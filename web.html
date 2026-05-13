@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beesla Trading Company</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #000;
+        }
+
+        .navbar-brand {
+            color: #0d6efd !important;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-image: url(/image/hero\ background.jpg);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-weight: bold;
+            color: #0d6efd;
+            margin-bottom: 30px;
+        }
+
+        /* Cards */
+        .card {
+            border: none;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Agriculture Section */
+        .agri {
+            background-color: #f8f9fa;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        img {
+            height: 100px;
+            width: 100px;
+        }
+
+        .box {
+    
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+   
+    animation-name: Rotate;
+    animation-duration: 15s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    overflow: hidden;
+    
+
+}
+
+@keyframes Rotate {
+    0% {
+        transform: rotatey(0deg);
+    }
+        
+    100% {
+        transform: rotatey(360deg);
+    }
+}
+@keyframes Rotate {
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    25% {
+        transform: rotateY(0deg);
+    }
+
+    30% {
+        transform: rotateY(90deg);
+    }
+
+    70% {
+        transform: rotateY(90deg);
+    }
+
+    75% {
+        transform: rotateY(0deg);
+    }
+
+    100% {
+        transform: rotateY(0deg);
+    }
+}
+
+
+.box2 {
+    width: 100px;
+    height: 100px;
+    animation-name: Rotate1;
+    animation-duration: 15s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-fill-mode: backwards;
+    animation-direction: reverse;
+    overflow: hidden;
+     border-radius: 50%;
+   
+
+
+}
+
+@keyframes Rotate1 {
+    0% {
+        transform: rotatey(0deg);
+    }
+    100% {
+         transform: rotatey(360deg);
+    }
+}
+@keyframes Rotate1 {
+    0% {
+        transform: rotateY(90deg);
+    }
+
+    30% {
+        transform: rotateY(90deg);
+    }
+
+    35% {
+        transform: rotateY(0deg);
+    }
+
+    65% {
+        transform: rotateY(0deg);
+    }
+
+    70% {
+        transform: rotateY(90deg);
+    }
+
+    100% {
+        transform: rotateY(90deg);
+    }
+}
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <div class="box">
+                <img src="../image/bt logo.jpeg" alt="">
+            </div>
+            <div class="box2">
+                <img src="/image/farmlogo.jpg" alt="">
+            </div>
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./Login.html">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./aboutUs.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./agriculture.html">Agriculture</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>Beesla Trading Company</h1>
+            <p>Managing Loans, Crop Quality & Smart Farming Solutions</p>
+            <button class="btn btn-primary">Get Started</button>
+        </div>
+    </section>
+
+    <!-- Loans Section -->
+    <section id="loans" class="container py-5">
+        <h2 class="section-title text-center">Loan Management</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card p-4 shadow">
+                    <h5>Easy Loans</h5>
+                    <p>Quick and simple loan approvals for farmers.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4 shadow">
+                    <h5>Low Interest</h5>
+                    <p>Affordable interest rates for better growth.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4 shadow">
+                    <h5>Secure System</h5>
+                    <p>Safe and reliable financial management.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Crops Section -->
+    <section id="crops" class="bg-light py-5">
+        <div class="container">
+            <h2 class="section-title text-center">Crop Quality</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card p-3 shadow">
+                        <h5>Wheat</h5>
+                        <p>High quality wheat monitoring and grading.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card p-3 shadow">
+                        <h5>Rice</h5>
+                        <p>Premium rice quality inspection services.</p>
+                    </div>
+                </div>
+                <!-- <div class="col-md-4">
+                    <div class="card p-3 shadow">
+                        <h5>Sugarcane</h5>
+                        <p>Efficient sugarcane production tracking.</p>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+   
+
+    <!-- Gallery
+    <section class="container py-5">
+        <h2 class="section-title text-center">Gallery</h2>
+        <div class="row">
+            <div class="col-md-4"><img src="https://via.placeholder.com/300" class="img-fluid rounded"></div>
+            <div class="col-md-4"><img src="" class="img-fluid rounded"></div>
+            <div class="col-md-4"><img src="https://via.placeholder.com/300" class="img-fluid rounded"></div>
+        </div>
+    </section> -->
+
+    <!-- Contact
+    <section id="contact" class="bg-light py-5">
+        <div class="container">
+            <h2 class="section-title text-center">Contact Us</h2>
+            <form class="w-50 mx-auto">
+                <input type="text" class="form-control mb-3" placeholder="Your Name">
+                <input type="email" class="form-control mb-3" placeholder="Your Email">
+                <textarea class="form-control mb-3" placeholder="Message"></textarea>
+                <button class="btn btn-primary w-100">Send Message</button>
+            </form>
+        </div>
+    </section> -->
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Beesla Trading Company | All Rights Reserved</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
