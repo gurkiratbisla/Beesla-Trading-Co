@@ -1,20 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>About Us – Beesla Trading Company</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
-        <style>
-             body {
-            font-family: 'Poppins', sans-serif;
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+        * {
+            box-sizing: border-box;
         }
 
-        /* Navbar */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+        }
+
+        /* ── Navbar ── */
         .navbar {
             background-color: #000;
+            min-height: 80px;
+            padding-top: 8px;
+            padding-bottom: 8px;
         }
 
         .navbar-brand {
@@ -22,173 +34,204 @@
             font-weight: bold;
         }
 
-         img {
-            height: 100px;
-            width: 100px;
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .box img,
+        .box2 img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            display: block;
         }
 
         .box {
-    
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-   
-    animation-name: Rotate;
-    animation-duration: 15s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    overflow: hidden;
-    
+            position: absolute;
+            left: 18px;
+            top: 8px;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            animation-name: Rotate;
+            animation-duration: 15s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
 
-}
+        @keyframes Rotate {
+            0% {
+                transform: rotateY(0deg);
+            }
 
-@keyframes Rotate {
-    0% {
-        transform: rotatey(0deg);
-    }
-        
-    100% {
-        transform: rotatey(360deg);
-    }
-}
-@keyframes Rotate {
-    0% {
-        transform: rotateY(0deg);
-    }
+            25% {
+                transform: rotateY(0deg);
+            }
 
-    25% {
-        transform: rotateY(0deg);
-    }
+            30% {
+                transform: rotateY(90deg);
+            }
 
-    30% {
-        transform: rotateY(90deg);
-    }
+            70% {
+                transform: rotateY(90deg);
+            }
 
-    70% {
-        transform: rotateY(90deg);
-    }
+            75% {
+                transform: rotateY(0deg);
+            }
 
-    75% {
-        transform: rotateY(0deg);
-    }
+            100% {
+                transform: rotateY(0deg);
+            }
+        }
 
-    100% {
-        transform: rotateY(0deg);
-    }
-}
+        .box2 {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            animation-name: Rotate1;
+            animation-duration: 15s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            animation-fill-mode: backwards;
+            animation-direction: reverse;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
 
+        @keyframes Rotate1 {
+            0% {
+                transform: rotateY(90deg);
+            }
 
-.box2 {
-    width: 100px;
-    height: 100px;
-    animation-name: Rotate1;
-    animation-duration: 15s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    animation-fill-mode: backwards;
-    animation-direction: reverse;
-    overflow: hidden;
-     border-radius: 50%;
-   
+            30% {
+                transform: rotateY(90deg);
+            }
 
+            35% {
+                transform: rotateY(0deg);
+            }
 
-}
+            65% {
+                transform: rotateY(0deg);
+            }
 
-@keyframes Rotate1 {
-    0% {
-        transform: rotatey(0deg);
-    }
-    100% {
-         transform: rotatey(360deg);
-    }
-}
-@keyframes Rotate1 {
-    0% {
-        transform: rotateY(90deg);
-    }
+            70% {
+                transform: rotateY(90deg);
+            }
 
-    30% {
-        transform: rotateY(90deg);
-    }
+            100% {
+                transform: rotateY(90deg);
+            }
+        }
 
-    35% {
-        transform: rotateY(0deg);
-    }
-
-    65% {
-        transform: rotateY(0deg);
-    }
-
-    70% {
-        transform: rotateY(90deg);
-    }
-
-    100% {
-        transform: rotateY(90deg);
-    }
-}
-
-
-        /* Hero Section */
+        /* ── Hero Section ── */
         .hero {
             background-image: url(./image/istockphoto-1051196760-640x640.jpg);
             color: rgb(255, 255, 255);
-            padding: 100px 0;
+            padding: clamp(80px, 15vw, 160px) 0;
             display: flex;
             text-align: center;
             background-repeat: no-repeat;
             background-size: cover;
-            height: 85vh;
+            background-position: center;
             align-items: center;
-            font-size: 50px;
-        }
-        h1{
-            font-size: larger;
         }
 
-        </style>
+        .hero h1 {
+            font-size: clamp(1.8rem, 5vw, 3.5rem);
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+        }
+
+        /* ── Tablet (≤ 991px) ── */
+        @media (max-width: 991px) {
+
+            .box,
+            .box2 {
+                width: 55px;
+                height: 55px;
+            }
+        }
+
+        /* ── Mobile (≤ 767px) ── */
+        @media (max-width: 767px) {
+
+            .box,
+            .box2 {
+                width: 45px;
+                height: 45px;
+            }
+
+            .hero {
+                padding: 90px 15px 60px;
+            }
+        }
+
+        /* ── Extra Small (≤ 400px) ── */
+        @media (max-width: 400px) {
+
+            .box,
+            .box2 {
+                width: 38px;
+                height: 38px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container">
-        <div class="box">
-            <img src="../image/bt logo.jpeg" alt="">
-        </div>
-        <div class="box2">
-            <img src="/image/farmlogo.jpg" alt="">
-        </div>
-        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <div class="collapse navbar-collapse" id="menu">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="./index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="./Login.html">Login</a></li>
-                <li class="nav-item"><a class="nav-link" href="./aboutUs.html">About Us</a></li>
-                <li class="nav-item"><a class="nav-link" href="./agriculture.html">Agriculture</a></li>
-                <li class="nav-item"><a class="nav-link" href="./contact.html">Contact</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <div class="logo-wrapper navbar-brand">
+                <div class="box">
+                    <img src="./image/beesla t logo.jpeg" alt="Beesla Logo">
+                </div>
+                <div class="box2">
+                    <img src="./image/farmlogo.jpg" alt="Farm Logo">
+                </div>
+            </div>
 
- <!-- Hero -->
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="./index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./Login.html">Login</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="./aboutUs.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./agriculture.html">Agriculture</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
     <section class="hero">
         <div class="container">
             <h1><b>About Us</b></h1>
             <p>Beesla Trading Company</p>
-            <button class="btn btn-primary">Get Started</button>
+            <a href="./contact.html">
+                <button class="btn btn-primary">Get Started</button>
+            </a>
         </div>
     </section>
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
 </body>
+
 </html>
