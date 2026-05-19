@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quality Inspections — Admin Panel</title>
+    <meta name="description" content="Secure administrative panel for loan management, crop quality analysis, and farmer relations.">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Shared animations -->
+    <link rel="stylesheet" href="../animations.css">
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --green:     #22c55e;
+            --green2:    #16a34a;
+            --blue:      #3b82f6;
+            --dark:      #0a0f1e;
+            --card-bg:   rgba(255,255,255,0.04);
+            --border:    rgba(255,255,255,0.08);
+            --muted:     #94a3b8;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: #e2e8f0;
+            overflow-x: hidden;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* ── Sidebar Navigation ── */
+        .sidebar {
+            width: 260px;
+            background: rgba(10, 15, 30, 0.95);
+            backdrop-filter: blur(14px);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 30px 20px;
+            position: fixed;
+            top: 0; bottom: 0; left: 0;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 30px;
+        }
+
+        .sidebar-box, .sidebar-box2 {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid rgba(34,197,94,0.4);
+        }
+
+        .sidebar-box img, .sidebar-box2 img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+
+        .sidebar-brand-text {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.2;
+        }
+
+        .sidebar-brand-text span {
+            color: var(--green);
+        }
+
+        .nav-menu {
+            list-style: none; padding: 0; margin: 0;
+            display: flex; flex-direction: column; gap: 8px;
+            flex-grow: 1;
+        }
+
+        .nav-menu-link {
+            display: flex; align-items: center; gap: 14px;
+            padding: 12px 16px; border-radius: 12px;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.88rem; font-weight: 500;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+        .nav-menu-link:hover, .nav-menu-link.active {
+            color: #fff;
+            background: rgba(34,197,94,0.12);
+        }
+
+        .nav-menu-link.active i {
+            color: var(--green);
+        }
+
+        .nav-menu-link i {
+            font-size: 1.1rem;
+            transition: color 0.25s;
+        }
+
+        /* ── Main Content Area ── */
+        .main-content {
+            margin-left: 260px;
+            flex-grow: 1;
+            padding: 40px;
+            min-height: 100vh;
+            position: relative;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        /* ── Top Header ── */
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        /* ── Dashboard Glassmorphism Container ── */
+        .glass-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .glass-box-title {
+            font-weight: 800; color: #fff; font-size: 1.15rem;
+            margin-bottom: 24px; display: flex; align-items: center; gap: 10px;
+        }
+
+        .glass-box-title i {
+            color: var(--green);
+        }
+
+        /* ── Tables ── */
+        .table-responsive-custom {
+            overflow-x: auto;
+        }
+
+        .table-custom {
+            width: 100%; margin: 0; color: #e2e8f0;
+            border-collapse: collapse;
+        }
+
+        .table-custom th {
+            font-size: 0.78rem; font-weight: 700; letter-spacing: 0.5px;
+            text-transform: uppercase; color: var(--muted);
+            padding: 16px 20px; border-bottom: 1px solid var(--border);
+        }
+
+        .table-custom td {
+            font-size: 0.88rem; padding: 18px 20px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: middle;
+        }
+
+        .table-custom tr:last-child td {
+            border-bottom: none;
+        }
+
+        .table-custom tr:hover td {
+            background: rgba(255,255,255,0.01);
+        }
+
+        .form-control-custom {
+            background: rgba(255,255,255,0.04) !important;
+            border: 1px solid var(--border) !important;
+            color: #fff !important;
+            border-radius: 10px !important;
+            padding: 10px 14px !important;
+        }
+
+        .form-control-custom:focus {
+            border-color: var(--green) !important;
+            box-shadow: 0 0 0 3px rgba(34,197,94,0.2) !important;
+        }
+
+        .btn-custom-primary {
+            background: linear-gradient(135deg, var(--green), var(--green2));
+            color: #fff; border: none; padding: 10px 24px;
+            border-radius: 10px; font-weight: 700;
+            box-shadow: 0 4px 15px rgba(34,197,94,0.3);
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .btn-custom-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(34,197,94,0.4);
+        }
+
+        /* Mobile Sidebar Toggle Hamburger */
+        .menu-toggle-btn {
+            display: none;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            width: 44px; height: 44px; border-radius: 12px;
+            align-items: center; justify-content: center;
+            color: #fff; font-size: 1.25rem; cursor: pointer;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 991px) {
+            .sidebar {
+                left: -280px;
+            }
+            .sidebar.active {
+                left: 0;
+            }
+            .main-content {
+                margin-left: 0;
+                padding: 30px 20px;
+            }
+            .menu-toggle-btn {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ── Sidebar Navigation ── -->
+    <aside class="sidebar" id="sidebar">
+        <div>
+            <div class="sidebar-logo">
+                <div class="sidebar-box"><img src="../image/beesla t logo.jpeg" alt="Beesla Logo"></div>
+                <div class="sidebar-box2"><img src="../image/farmlogo.jpg" alt="Farm Logo"></div>
+                <div class="sidebar-brand-text">Beesla<br><span>Trading Co.</span></div>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="./index.html" class="nav-menu-link"><i class="bi bi-grid-fill"></i> Dashboard</a>
+                <a href="./farmers.html" class="nav-menu-link"><i class="bi bi-people-fill"></i> Farmers Directory</a>
+                <a href="./loans.html" class="nav-menu-link"><i class="bi bi-cash-stack"></i> Loan Applications</a>
+                <a href="./inspections.html" class="nav-menu-link active"><i class="bi bi-clipboard-pulse"></i> Quality Inspections</a>
+                <a href="./logistics.html" class="nav-menu-link"><i class="bi bi-truck"></i> Grain Logistics</a>
+                <a href="./settings.html" class="nav-menu-link"><i class="bi bi-gear-fill"></i> System Settings</a>
+            </nav>
+        </div>
+
+        <div>
+            <a href="../index.html" class="nav-menu-link" style="color:#ef4444;"><i class="bi bi-box-arrow-left"></i> Exit Dashboard</a>
+        </div>
+    </aside>
+
+    <!-- ── Main Content Area ── -->
+    <main class="main-content">
+
+        <!-- Top Header -->
+        <header class="top-header">
+            <div class="d-flex align-items-center gap-3">
+                <button class="menu-toggle-btn" id="menuToggle"><i class="bi bi-list"></i></button>
+                <h2 style="font-weight:800; font-size:1.45rem; color:#fff; margin:0;"><i class="bi bi-clipboard-pulse text-success me-2"></i> Inspections Portal</h2>
+            </div>
+        </header>
+
+        <section class="row g-4">
+            <!-- Left Panel: Moisture Grade Calculator -->
+            <div class="col-lg-4 reveal">
+                <div class="glass-box h-100">
+                    <h3 class="glass-box-title"><i class="bi bi-calculator"></i> Grain Moisture Grading</h3>
+                    <p style="font-size:0.83rem; color:var(--muted); line-height:1.6;" class="mb-4">
+                        Moisture level is crucial for storage and export quality. Use this calculator tool to analyze sample readings instantly.
+                    </p>
+
+                    <form id="calcForm" onsubmit="event.preventDefault(); calculateGrade();">
+                        <div class="mb-3">
+                            <label for="calcCrop" class="form-label text-muted">Crop Variety</label>
+                            <select id="calcCrop" class="form-select form-control-custom">
+                                <option value="Wheat">Grade-A Wheat</option>
+                                <option value="Rice">Basmati Rice</option>
+                                <option value="Cotton">Raw Cotton</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label for="calcMoisture" class="form-label text-muted">Moisture Percentage (%)</label>
+                            <input type="number" step="0.1" id="calcMoisture" class="form-control form-control-custom" placeholder="e.g. 12.4" required>
+                        </div>
+                        <button type="submit" class="btn-custom-primary w-100">Evaluate Sample</button>
+                    </form>
+
+                    <!-- Evaluation Result Panel -->
+                    <div id="calcResult" class="mt-4 p-3 rounded" style="background:rgba(255,255,255,0.02); border:1px dashed var(--border); display:none;">
+                        <h5 style="font-size:0.9rem; font-weight:700; color:#fff;" class="mb-2">Evaluation Outcome:</h5>
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <span style="font-size:0.84rem; color:var(--muted)">Target Crop:</span>
+                            <span style="font-size:0.84rem; font-weight:700; color:#fff" id="resCrop">-</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <span style="font-size:0.84rem; color:var(--muted)">Moisture Status:</span>
+                            <span style="font-size:0.84rem; font-weight:700; color:var(--green)" id="resMoist">-</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mt-2 pt-2 border-top border-secondary">
+                            <span style="font-size:0.88rem; font-weight:700; color:#fff">Assigned Grade:</span>
+                            <span class="badge bg-success" style="font-size:0.85rem;" id="resGrade">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel: Inspection Logs -->
+            <div class="col-lg-8 reveal reveal-delay-2">
+                <div class="glass-box h-100">
+                    <h3 class="glass-box-title"><i class="bi bi-journals"></i> Recent Inspection Logs</h3>
+                    <div class="table-responsive-custom">
+                        <table class="table-custom" id="inspectionsTable">
+                            <thead>
+                                <tr>
+                                    <th>Farmer</th>
+                                    <th>Crop Type</th>
+                                    <th>Moisture Content</th>
+                                    <th>Quality Grade</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Sukhwinder Bisla</td>
+                                    <td>Wheat (Grade A)</td>
+                                    <td>12.4% (Optimum)</td>
+                                    <td><span class="badge bg-success" style="font-size:0.75rem;">A+</span></td>
+                                    <td><span class="text-success" style="font-size:0.82rem; font-weight:600;"><i class="bi bi-shield-check"></i> Passed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Manpreet Singh</td>
+                                    <td>Basmati Rice</td>
+                                    <td>14.2% (Moderate)</td>
+                                    <td><span class="badge bg-warning text-dark" style="font-size:0.75rem;">B+</span></td>
+                                    <td><span class="text-success" style="font-size:0.82rem; font-weight:600;"><i class="bi bi-shield-check"></i> Passed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Baldev Singh</td>
+                                    <td>Wheat (Grade B)</td>
+                                    <td>11.8% (Dry)</td>
+                                    <td><span class="badge bg-success" style="font-size:0.75rem;">A</span></td>
+                                    <td><span class="text-success" style="font-size:0.82rem; font-weight:600;"><i class="bi bi-shield-check"></i> Passed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Jaspreet Kaur</td>
+                                    <td>Cotton Staple</td>
+                                    <td>8.5% (Optimum)</td>
+                                    <td><span class="badge bg-success" style="font-size:0.75rem;">A+</span></td>
+                                    <td><span class="text-success" style="font-size:0.82rem; font-weight:600;"><i class="bi bi-shield-check"></i> Passed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Amrit Pal Singh</td>
+                                    <td>Basmati Rice</td>
+                                    <td>18.1% (Wet)</td>
+                                    <td><span class="badge bg-danger" style="font-size:0.75rem;">D</span></td>
+                                    <td><span class="text-danger" style="font-size:0.82rem; font-weight:600;"><i class="bi bi-exclamation-triangle-fill"></i> Rejected</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Scroll reveal
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); obs.unobserve(e.target); } });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+        // Mobile sidebar toggler
+        const sidebar = document.getElementById('sidebar');
+        const menuToggle = document.getElementById('menuToggle');
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+
+        // Close sidebar if clicking outside on mobile
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 991) {
+                if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
+                    sidebar.classList.remove('active');
+                }
+            }
+        });
+
+        // Dynamic Grade Calculator function
+        function calculateGrade() {
+            const crop = document.getElementById('calcCrop').value;
+            const moisture = parseFloat(document.getElementById('calcMoisture').value);
+
+            let moistureStatus = 'Optimum';
+            let assignedGrade = 'A+';
+            let gradeColor = 'bg-success';
+            let statusColor = '#22c55e';
+
+            if (crop === 'Wheat') {
+                if (moisture < 11.0) {
+                    moistureStatus = 'Dry (Under 11%)';
+                    assignedGrade = 'A';
+                } else if (moisture >= 11.0 && moisture <= 13.0) {
+                    moistureStatus = 'Optimum (11-13%)';
+                    assignedGrade = 'A+';
+                } else if (moisture > 13.0 && moisture <= 15.0) {
+                    moistureStatus = 'Moderate (13-15%)';
+                    assignedGrade = 'B+';
+                    gradeColor = 'bg-warning text-dark';
+                    statusColor = '#eab308';
+                } else {
+                    moistureStatus = 'Wet (Above 15%)';
+                    assignedGrade = 'Rejected';
+                    gradeColor = 'bg-danger';
+                    statusColor = '#ef4444';
+                }
+            } else if (crop === 'Rice') {
+                if (moisture < 12.0) {
+                    moistureStatus = 'Dry';
+                    assignedGrade = 'A';
+                } else if (moisture >= 12.0 && moisture <= 14.5) {
+                    moistureStatus = 'Optimum (12-14.5%)';
+                    assignedGrade = 'A+';
+                } else if (moisture > 14.5 && moisture <= 17.0) {
+                    moistureStatus = 'Moderate';
+                    assignedGrade = 'B+';
+                    gradeColor = 'bg-warning text-dark';
+                    statusColor = '#eab308';
+                } else {
+                    moistureStatus = 'Wet (Above 17%)';
+                    assignedGrade = 'Rejected';
+                    gradeColor = 'bg-danger';
+                    statusColor = '#ef4444';
+                }
+            } else { // Cotton
+                if (moisture <= 9.0) {
+                    moistureStatus = 'Optimum (Under 9%)';
+                    assignedGrade = 'A+';
+                } else if (moisture > 9.0 && moisture <= 11.0) {
+                    moistureStatus = 'Moderate';
+                    assignedGrade = 'A';
+                } else {
+                    moistureStatus = 'Excessive Moisture';
+                    assignedGrade = 'Rejected';
+                    gradeColor = 'bg-danger';
+                    statusColor = '#ef4444';
+                }
+            }
+
+            // Update UI elements
+            document.getElementById('resCrop').innerText = crop;
+            document.getElementById('resMoist').innerText = moistureStatus;
+            document.getElementById('resMoist').style.color = statusColor;
+
+            const resGradeSpan = document.getElementById('resGrade');
+            resGradeSpan.innerText = assignedGrade;
+            resGradeSpan.className = `badge ${gradeColor}`;
+
+            document.getElementById('calcResult').style.display = 'block';
+        }
+    </script>
+</body>
+
+</html>

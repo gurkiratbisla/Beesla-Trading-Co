@@ -1,222 +1,289 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beesla Trading Company</title>
-
-    <!-- Bootstrap 5 -->
+    <title>Beesla Trading Company – Smart Agricultural Solutions</title>
+    <meta name="description" content="Beesla Trading Company – Managing Loans, Crop Quality & Smart Farming Solutions since 2010.">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./animations.css">
     <style>
-        /* Import Google Font */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-
-        * {
-            box-sizing: border-box;
+        :root {
+            --green:   #22c55e;
+            --green2:  #16a34a;
+            --blue:    #3b82f6;
+            --dark:    #0a0f1e;
+            --card-bg: rgba(255,255,255,0.04);
+            --border:  rgba(255,255,255,0.08);
+            --muted:   #94a3b8;
         }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: #e2e8f0;
+            overflow-x: hidden;
         }
 
         /* ── Navbar ── */
         .navbar {
-            background-color: #000;
-            min-height: 80px;
-            padding-top: 8px;
-            padding-bottom: 8px;
+            background: rgba(10,15,30,0.9);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background 0.3s;
         }
-
-        .navbar-brand {
-            color: #0d6efd !important;
-            font-weight: bold;
+        .logo-wrapper { display:flex; align-items:center; gap:10px; flex-shrink:0; }
+        .box, .box2 {
+            border-radius:50%; overflow:hidden; flex-shrink:0;
+            border: 2px solid rgba(34,197,94,0.4);
+            box-shadow: 0 0 10px rgba(34,197,94,0.2);
+            width:54px; height:54px;
         }
+        .box  { animation: Rotate  15s linear infinite; }
+        .box2 { animation: Rotate1 15s linear infinite backwards; animation-direction:reverse; }
+        .box img, .box2 img { width:100%; height:100%; object-fit:cover; display:block; }
+        @keyframes Rotate  { 0%,25%{transform:rotateY(0deg)} 30%,70%{transform:rotateY(90deg)} 75%,100%{transform:rotateY(0deg)} }
+        @keyframes Rotate1 { 0%,30%{transform:rotateY(90deg)} 35%,65%{transform:rotateY(0deg)} 70%,100%{transform:rotateY(90deg)} }
 
-        /* Logo pair wrapper */
-        .logo-wrapper {
+        .brand-text {     font-size:.95rem; font-weight:700; color:#fff; line-height:1.2; }
+        .brand-text span { color:var(--green); }
+        .nav-link { color:rgba(255,255,255,0.72) !important; font-size:.88rem; font-weight:500; padding:6px 14px !important; border-radius:8px; transition:color .2s, background .2s; }
+        .nav-link:hover { color:#fff !important; background:rgba(34,197,94,0.12); }
+        .nav-link.active-page { color:var(--green) !important; }
+        .navbar-toggler { border-color:rgba(255,255,255,0.2); }
+        .navbar-toggler:focus { box-shadow:none; }
+
+        /* ── Hero ── */
+        .hero {
+            min-height: 100vh;
+            background: url(./image/hero\ background.jpg) center/cover no-repeat;
+            position: relative;
             display: flex;
             align-items: center;
-            gap: 10px;
-            flex-shrink: 0;
-        }
-
-        /* Scoped logo images */
-        .box img,
-        .box2 img {
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .box {
-            width: 80px;
-            height: 90px;
-            border-radius: 50%;
-            animation-name: Rotate;
-            animation-duration: 15s;
-            animation-iteration-count: infinite;
-            animation-timing-function: linear;
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-
-        @keyframes Rotate {
-            0%   { transform: rotateY(0deg); }
-            25%  { transform: rotateY(0deg); }
-            30%  { transform: rotateY(90deg); }
-            70%  { transform: rotateY(90deg); }
-            75%  { transform: rotateY(0deg); }
-            100% { transform: rotateY(0deg); }
-        }
-
-        .box2 {
-            position: absolute;
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            animation-name: Rotate1;
-            animation-duration: 15s;
-            animation-iteration-count: infinite;
-            animation-timing-function: linear;
-            animation-fill-mode: backwards;
-            animation-direction: reverse;
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-
-        @keyframes Rotate1 {
-            0%   { transform: rotateY(90deg); }
-            30%  { transform: rotateY(90deg); }
-            35%  { transform: rotateY(0deg); }
-            65%  { transform: rotateY(0deg); }
-            70%  { transform: rotateY(90deg); }
-            100% { transform: rotateY(90deg); }
-        }
-
-        /* ── Hero Section ── */
-        .hero {
-            background-image: url(./image/hero\ background.jpg);
-            color: white;
-            padding: clamp(60px, 12vw, 130px) 0;
             text-align: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
         }
+        .hero::before {
+            content:'';
+            position:absolute; inset:0;
+            background: linear-gradient(160deg,rgba(10,15,30,0.75) 0%,rgba(10,30,20,0.65) 100%);
+        }
+        .hero::after {
+            content:'';
+            position:absolute; inset:0;
+            background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(34,197,94,0.12) 0%, transparent 70%);
+            pointer-events:none;
+        }
+        .hero-content { position:relative; z-index:2; padding:0 20px; }
 
+        .hero-badge {
+            display:inline-flex; align-items:center; gap:8px;
+            background:rgba(34,197,94,0.12);
+            border:1px solid rgba(34,197,94,0.3);
+            border-radius:50px; padding:6px 18px;
+            font-size:.75rem; font-weight:600; letter-spacing:2px;
+            text-transform:uppercase; color:var(--green);
+            margin-bottom:24px;
+            animation: heroSlideUp .6s ease .1s both;
+        }
         .hero h1 {
-            font-size: clamp(1.6rem, 5vw, 3rem);
-            font-weight: 700;
+            font-size:clamp(2rem,6vw,4rem);
+            font-weight:900; line-height:1.15;
+            color:#fff;
+            text-shadow:0 4px 20px rgba(0,0,0,0.4);
+            animation: heroSlideUp .7s ease .2s both;
         }
-
+        .hero h1 span { color:var(--green); }
         .hero p {
-            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+            font-size:clamp(.95rem,2vw,1.2rem);
+            color:rgba(255,255,255,0.75);
+            max-width:560px; margin:18px auto 32px;
+            line-height:1.7;
+            animation: heroSlideUp .7s ease .35s both;
         }
+        .hero-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; animation: heroSlideUp .7s ease .5s both; }
 
-        /* ── Section Titles ── */
-        .section-title {
-            font-weight: bold;
-            color: #0d6efd;
-            margin-bottom: 30px;
+        .btn-hero-primary {
+            background:linear-gradient(135deg,var(--green),var(--green2));
+            color:#fff; border:none; padding:14px 32px;
+            border-radius:12px; font-weight:700; font-size:1rem;
+            box-shadow:0 8px 24px rgba(34,197,94,0.35);
+            transition:transform .2s,box-shadow .2s;
+            text-decoration:none; display:inline-flex; align-items:center; gap:8px;
         }
+        .btn-hero-primary:hover { transform:translateY(-3px); box-shadow:0 14px 32px rgba(34,197,94,0.5); color:#fff; }
 
-        /* ── Cards ── */
-        .card {
-            border: none;
-            transition: transform 0.3s;
+        .btn-hero-outline {
+            background:transparent;
+            color:#fff; border:1px solid rgba(255,255,255,0.3);
+            padding:14px 32px; border-radius:12px; font-weight:600; font-size:1rem;
+            transition:border-color .2s,background .2s,transform .2s;
+            text-decoration:none; display:inline-flex; align-items:center; gap:8px;
         }
+        .btn-hero-outline:hover { border-color:var(--green); background:rgba(34,197,94,0.08); color:#fff; transform:translateY(-3px); }
 
-        .card:hover {
-            transform: translateY(-8px);
+        /* Scroll indicator */
+        .scroll-hint {
+            position:absolute; bottom:32px; left:50%;
+            transform:translateX(-50%); z-index:2;
+            display:flex; flex-direction:column; align-items:center; gap:6px;
+            color:rgba(255,255,255,0.4); font-size:.72rem; letter-spacing:1.5px; text-transform:uppercase;
+            animation: bounce 2s ease-in-out infinite;
         }
+        @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
 
-        /* ── Agriculture Section ── */
-        .agri {
-            background-color: #f8f9fa;
+        /* ── Stats strip ── */
+        .stats-strip {
+            background:rgba(255,255,255,0.03);
+            border-top:1px solid var(--border);
+            border-bottom:1px solid var(--border);
+            padding:32px 0;
         }
+        .stat-item { text-align:center; }
+        .stat-number {
+            font-size:clamp(1.6rem,4vw,2.4rem);
+            font-weight:900; color:#fff;
+            background:linear-gradient(135deg,var(--green),#86efac);
+            -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+            background-clip:text;
+        }
+        .stat-label { font-size:.82rem; color:var(--muted); margin-top:4px; }
+
+        /* ── Sections ── */
+        section { padding:80px 0; }
+        .eyebrow {
+            font-size:.72rem; font-weight:700; letter-spacing:2.5px;
+            text-transform:uppercase; color:var(--green); margin-bottom:8px;
+        }
+        .sec-title {
+            font-size:clamp(1.6rem,4vw,2.4rem);
+            font-weight:800; color:#fff; margin-bottom:12px;
+        }
+        .sec-sub { font-size:.95rem; color:var(--muted); max-width:520px; line-height:1.7; }
+
+        /* ── Feature cards ── */
+        .feat-card {
+            background:var(--card-bg);
+            border:1px solid var(--border);
+            border-radius:20px;
+            padding:32px 28px;
+            height:100%;
+            transition:transform .3s,box-shadow .3s,border-color .3s;
+            position:relative; overflow:hidden;
+        }
+        .feat-card::before {
+            content:'';
+            position:absolute; top:0; left:0; right:0; height:2px;
+            background:linear-gradient(90deg,transparent,var(--green),transparent);
+            opacity:0; transition:opacity .3s;
+        }
+        .feat-card:hover { transform:translateY(-8px); box-shadow:0 24px 48px rgba(0,0,0,0.4); border-color:rgba(34,197,94,0.3); }
+        .feat-card:hover::before { opacity:1; }
+
+        .feat-icon {
+            width:54px; height:54px;
+            background:rgba(34,197,94,0.12);
+            border:1px solid rgba(34,197,94,0.25);
+            border-radius:14px;
+            display:flex; align-items:center; justify-content:center;
+            font-size:1.4rem; color:var(--green);
+            margin-bottom:20px;
+        }
+        .feat-card h5 { font-weight:700; color:#fff; font-size:1.05rem; margin-bottom:8px; }
+        .feat-card p  { font-size:.88rem; color:var(--muted); line-height:1.7; margin:0; }
+
+        /* ── Crop cards ── */
+        .crop-card {
+            background:var(--card-bg);
+            border:1px solid var(--border);
+            border-radius:18px; overflow:hidden;
+            transition:transform .3s, box-shadow .3s;
+        }
+        .crop-card:hover { transform:translateY(-8px); box-shadow:0 20px 40px rgba(0,0,0,0.4); }
+        .crop-img { height:180px; object-fit:cover; width:100%; }
+        .crop-body { padding:22px; }
+        .crop-tag {
+            display:inline-block; padding:3px 12px;
+            background:rgba(34,197,94,0.12); border:1px solid rgba(34,197,94,0.3);
+            border-radius:50px; font-size:.72rem; font-weight:600;
+            color:var(--green); margin-bottom:10px; letter-spacing:1px;
+        }
+        .crop-body h5 { font-weight:700; color:#fff; margin-bottom:6px; }
+        .crop-body p  { font-size:.86rem; color:var(--muted); line-height:1.6; margin:0; }
+
+        /* ── Why us ── */
+        .why-item { display:flex; gap:16px; align-items:flex-start; padding:20px; border-radius:14px; transition:background .2s; }
+        .why-item:hover { background:rgba(255,255,255,0.04); }
+        .why-icon { width:44px; height:44px; border-radius:12px; background:rgba(59,130,246,0.12); border:1px solid rgba(59,130,246,0.25); display:flex; align-items:center; justify-content:center; font-size:1.1rem; color:var(--blue); flex-shrink:0; }
+        .why-item h6 { font-weight:700; color:#fff; margin-bottom:4px; }
+        .why-item p  { font-size:.84rem; color:var(--muted); margin:0; line-height:1.6; }
+
+        /* ── CTA banner ── */
+        .cta-banner {
+            background:linear-gradient(135deg,rgba(34,197,94,0.15),rgba(59,130,246,0.1));
+            border:1px solid rgba(34,197,94,0.2);
+            border-radius:24px; padding:56px 40px;
+            text-align:center; position:relative; overflow:hidden;
+        }
+        .cta-banner::before {
+            content:'';
+            position:absolute; top:-60px; right:-60px;
+            width:220px; height:220px; border-radius:50%;
+            background:radial-gradient(circle,rgba(34,197,94,0.15),transparent 70%);
+            pointer-events:none;
+        }
+        .cta-banner h2 { font-size:clamp(1.5rem,3.5vw,2.2rem); font-weight:800; color:#fff; margin-bottom:12px; }
+        .cta-banner p  { color:var(--muted); font-size:.95rem; max-width:480px; margin:0 auto 28px; line-height:1.7; }
 
         /* ── Footer ── */
         footer {
-            background: #000;
-            color: white;
-            padding: 20px;
-            text-align: center;
+            background:rgba(5,5,15,0.95);
+            border-top:1px solid var(--border);
+            padding:20px; text-align:center;
+            color:var(--muted); font-size:.84rem;
         }
+        footer span { color:var(--green); font-weight:600; }
 
-        /* ── Tablet (≤ 991px) ── */
-        @media (max-width: 991px) {
-            .box,
-            .box2 {
-                width: 55px;
-                height: 55px;
-            }
+        /* ── Responsive ── */
+        @media (max-width:767px) {
+            .box,.box2 { width:44px;height:44px; }
+            .navbar-collapse { background:rgba(5,5,15,0.96); border-radius:0 0 14px 14px; padding:12px 16px; margin-top:8px; border:1px solid var(--border); border-top:none; }
+            section { padding:56px 0; }
+            .cta-banner { padding:36px 20px; }
         }
-
-        /* ── Mobile (≤ 767px) ── */
-        @media (max-width: 767px) {
-            .box,
-            .box2 {
-                width: 45px;
-                height: 45px;
-            }
-
-            .hero {
-                padding: 60px 15px;
-            }
-
-            /* Stack loan/crop cards vertically with spacing */
-            #loans .col-md-4,
-            #crops .col-md-6 {
-                margin-bottom: 16px;
-            }
-        }
-
-        /* ── Extra Small (≤ 400px) ── */
-        @media (max-width: 400px) {
-            .box,
-            .box2 {
-                width: 38px;
-                height: 38px;
-            }
-
-            .hero {
-                padding: 50px 10px;
-            }
+        @media (max-width:480px) {
+            .box,.box2 { width:38px;height:38px; }
+            .hero-btns { flex-direction:column; align-items:center; }
         }
     </style>
-
 </head>
-
 <body>
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-            <!-- Logo pair -->
             <div class="logo-wrapper navbar-brand">
-                <div class="box">
-                    <img src="./image/beesla t logo.jpeg" alt="Beesla Logo">
-                </div>
-                <div class="box2">
-                    <img src="./image/farmlogo.jpg" alt="Farm Logo">
-                </div>
+                <div class="box"><img src="./image/beesla t logo.jpeg" alt="Beesla Logo"></div>
+                <div class="box2"><img src="./image/farmlogo.jpg" alt="Farm Logo"></div>
+                <div class="brand-text">Beesla<br><span>Trading Co.</span></div>
             </div>
-
             <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse" id="menu">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="./index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="./Login.html">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="./aboutUs.html">About Us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="./agriculture.html">Agriculture</a></li>
-                    <li class="nav-item"><a class="nav-link" href="./contact.html">Contact</a></li>
+                <ul class="navbar-nav ms-auto gap-1">
+                    <li class="nav-item"><a class="nav-link active-page" href="./index.html"><i class="bi bi-house-door me-1"></i>Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./Login.html"><i class="bi bi-box-arrow-in-right me-1"></i>Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./aboutUs.html"><i class="bi bi-info-circle me-1"></i>About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./gallary.html"><i class="bi bi-images me-1"></i>Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./agriculture.html"><i class="bi bi-flower1 me-1"></i>Agriculture</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./contact.html"><i class="bi bi-envelope me-1"></i>Contact</a></li>
                 </ul>
             </div>
         </div>
@@ -224,97 +291,220 @@
 
     <!-- Hero -->
     <section class="hero">
-        <div class="container">
-            <h1>Beesla Trading Company</h1>
-            <p>Managing Loans, Crop Quality & Smart Farming Solutions</p>
-             <a href="./contact.html"><button class="btn btn-primary">
-               Get Started</button></a>
+        <div class="container hero-content">
+            <div class="hero-badge"><i class="bi bi-patch-check-fill"></i> Trusted Since 2010</div>
+            <h1>Beesla <span>Trading</span><br>Company</h1>
+            <p>Managing Loans, Crop Quality &amp; Smart Farming Solutions for a prosperous agricultural future.</p>
+            <div class="hero-btns">
+                <a href="./contact.html" class="btn-hero-primary"><i class="bi bi-arrow-right-circle"></i> Get Started</a>
+                <a href="./agriculture.html" class="btn-hero-outline"><i class="bi bi-flower1"></i> Our Services</a>
+            </div>
+        </div>
+        <div class="scroll-hint">
+            <i class="bi bi-chevron-down fs-5"></i>
+            <span>Scroll</span>
         </div>
     </section>
 
-    <!-- Loans Section -->
-    <section id="loans" class="container py-5">
-        <h2 class="section-title text-center">Loan Management</h2>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card p-4 shadow">
-                    <h5>Easy Loans</h5>
-                    <p>Quick and simple loan approvals for farmers.</p>
+    <!-- Stats -->
+    <div class="stats-strip">
+        <div class="container">
+            <div class="row g-4 text-center">
+                <div class="col-6 col-md-3 stat-item reveal reveal-delay-1">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Farmers Served</div>
+                </div>
+                <div class="col-6 col-md-3 stat-item reveal reveal-delay-2">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="col-6 col-md-3 stat-item reveal reveal-delay-3">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Satisfaction Rate</div>
+                </div>
+                <div class="col-6 col-md-3 stat-item reveal reveal-delay-4">
+                    <div class="stat-number">₹5Cr+</div>
+                    <div class="stat-label">Loans Disbursed</div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card p-4 shadow">
-                    <h5>Low Interest</h5>
-                    <p>Affordable interest rates for better growth.</p>
+        </div>
+    </div>
+
+    <!-- Loan Management -->
+    <section id="loans">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-4 reveal">
+                    <p class="eyebrow">Financial Solutions</p>
+                    <h2 class="sec-title">Smart Loan<br>Management</h2>
+                    <p class="sec-sub">We provide quick, affordable, and secure loan solutions tailored for farmers and agricultural businesses.</p>
+                    <a href="./contact.html" class="btn-hero-primary mt-4 d-inline-flex" style="padding:12px 24px;font-size:.9rem;">
+                        <i class="bi bi-arrow-right-circle"></i> Apply Now
+                    </a>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card p-4 shadow">
-                    <h5>Secure System</h5>
-                    <p>Safe and reliable financial management.</p>
+                <div class="col-lg-8">
+                    <div class="row g-4">
+                        <div class="col-sm-6 col-lg-4 reveal reveal-delay-1">
+                            <div class="feat-card">
+                                <div class="feat-icon"><i class="bi bi-lightning-charge-fill"></i></div>
+                                <h5>Easy Loans</h5>
+                                <p>Quick and simple loan approvals for farmers with minimal paperwork.</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-4 reveal reveal-delay-2">
+                            <div class="feat-card">
+                                <div class="feat-icon"><i class="bi bi-percent"></i></div>
+                                <h5>Low Interest</h5>
+                                <p>Affordable interest rates designed for better agricultural growth.</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-4 reveal reveal-delay-3">
+                            <div class="feat-card">
+                                <div class="feat-icon"><i class="bi bi-shield-lock-fill"></i></div>
+                                <h5>Secure System</h5>
+                                <p>Safe, reliable and transparent financial management platform.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Crops Section -->
-    <section id="crops" class="bg-light py-5">
+    <!-- Crop Quality -->
+    <section id="crops" style="background:rgba(255,255,255,0.02);">
         <div class="container">
-            <h2 class="section-title text-center">Crop Quality</h2>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card p-3 shadow">
-                        <h5>Wheat</h5>
-                        <p>High quality wheat monitoring and grading.</p>
+            <div class="text-center mb-5 reveal">
+                <p class="eyebrow">Crop Excellence</p>
+                <h2 class="sec-title">Premium Crop Quality</h2>
+                <p class="sec-sub mx-auto">We monitor, grade and inspect every crop to ensure the highest standards of quality and yield.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 reveal reveal-delay-1">
+                    <div class="crop-card">
+                        <div class="crop-body">
+                            <span class="crop-tag">Grain</span>
+                            <h5>Wheat Monitoring</h5>
+                            <p>High quality wheat monitoring with real-time grading and quality assessment for premium market value.</p>
+                            <a href="./agriculture.html" class="mt-3 d-inline-flex align-items-center gap-2" style="color:var(--green);font-size:.88rem;font-weight:600;text-decoration:none;">
+                                Learn More <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="card p-3 shadow">
-                        <h5>Rice</h5>
-                        <p>Premium rice quality inspection services.</p>
+                <div class="col-md-6 reveal reveal-delay-2">
+                    <div class="crop-card">
+                        <div class="crop-body">
+                            <span class="crop-tag">Staple</span>
+                            <h5>Rice Inspection</h5>
+                            <p>Premium rice quality inspection services with comprehensive analysis for export and domestic markets.</p>
+                            <a href="./agriculture.html" class="mt-3 d-inline-flex align-items-center gap-2" style="color:var(--green);font-size:.88rem;font-weight:600;text-decoration:none;">
+                                Learn More <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <!-- <div class="col-md-4">
-                    <div class="card p-3 shadow">
-                        <h5>Sugarcane</h5>
-                        <p>Efficient sugarcane production tracking.</p>
-                    </div>
-                </div> -->
             </div>
         </div>
     </section>
 
-   
-
-    <!-- Gallery
-    <section class="container py-5">
-        <h2 class="section-title text-center">Gallery</h2>
-        <div class="row">
-            <div class="col-md-4"><img src="https://via.placeholder.com/300" class="img-fluid rounded"></div>
-            <div class="col-md-4"><img src="" class="img-fluid rounded"></div>
-            <div class="col-md-4"><img src="https://via.placeholder.com/300" class="img-fluid rounded"></div>
-        </div>
-    </section> -->
-
-    <!-- Contact
-    <section id="contact" class="bg-light py-5">
+    <!-- Why Us -->
+    <section id="why">
         <div class="container">
-            <h2 class="section-title text-center">Contact Us</h2>
-            <form class="w-50 mx-auto">
-                <input type="text" class="form-control mb-3" placeholder="Your Name">
-                <input type="email" class="form-control mb-3" placeholder="Your Email">
-                <textarea class="form-control mb-3" placeholder="Message"></textarea>
-                <button class="btn btn-primary w-100">Send Message</button>
-            </form>
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-5 reveal">
+                    <p class="eyebrow">Why Choose Us</p>
+                    <h2 class="sec-title">Your Trusted Agricultural Partner</h2>
+                    <p class="sec-sub">We combine decades of experience with modern technology to deliver unmatched agricultural solutions.</p>
+                </div>
+                <div class="col-lg-7">
+                    <div class="why-item reveal reveal-delay-1">
+                        <div class="why-icon"><i class="bi bi-graph-up-arrow"></i></div>
+                        <div>
+                            <h6>Real-time Analytics</h6>
+                            <p>Monitor your farm performance with live dashboards and data-driven insights.</p>
+                        </div>
+                    </div>
+                    <div class="why-item reveal reveal-delay-2">
+                        <div class="why-icon"><i class="bi bi-people-fill"></i></div>
+                        <div>
+                            <h6>Expert Team</h6>
+                            <p>A dedicated team of agricultural experts and financial advisors at your service.</p>
+                        </div>
+                    </div>
+                    <div class="why-item reveal reveal-delay-3">
+                        <div class="why-icon"><i class="bi bi-geo-alt-fill"></i></div>
+                        <div>
+                            <h6>On-Ground Support</h6>
+                            <p>Field visits and on-site assistance ensuring your crops and finances are always on track.</p>
+                        </div>
+                    </div>
+                    <div class="why-item reveal reveal-delay-4">
+                        <div class="why-icon"><i class="bi bi-award-fill"></i></div>
+                        <div>
+                            <h6>Certified Quality</h6>
+                            <p>Internationally recognised crop quality standards and certifications.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </section> -->
+    </section>
+
+    <!-- CTA -->
+    <section style="padding:60px 0 80px;">
+        <div class="container">
+            <div class="cta-banner reveal">
+                <p class="eyebrow">Ready to Grow?</p>
+                <h2>Start Your Agricultural Journey Today</h2>
+                <p>Join hundreds of farmers who trust Beesla Trading Company for loans, crop quality, and smart farming solutions.</p>
+                <div class="d-flex gap-3 justify-content-center flex-wrap">
+                    <a href="./contact.html" class="btn-hero-primary"><i class="bi bi-envelope-fill"></i> Contact Us</a>
+                    <a href="./Login.html" class="btn-hero-outline"><i class="bi bi-box-arrow-in-right"></i> Admin Login</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer>
-        <p>© 2026 Beesla Trading Company | All Rights Reserved</p>
+        <p>© 2026 <span>Beesla Trading Company</span> | All Rights Reserved</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    <script>
+        // Scroll reveal
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); obs.unobserve(e.target); } });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
+        // Sticky navbar tint
+        window.addEventListener('scroll', () => {
+            document.querySelector('.navbar').style.background =
+                window.scrollY > 60 ? 'rgba(5,8,20,0.98)' : 'rgba(10,15,30,0.9)';
+        });
+
+        // Count-up animation for stats
+        const counters = document.querySelectorAll('.stat-number');
+        const countObs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const el = entry.target;
+                const raw = el.textContent;
+                const num = parseFloat(raw.replace(/[^0-9.]/g, ''));
+                const suffix = raw.replace(/[0-9.]/g, '');
+                let start = 0, duration = 1800, step = 16;
+                const inc = num / (duration / step);
+                const timer = setInterval(() => {
+                    start += inc;
+                    if (start >= num) { start = num; clearInterval(timer); }
+                    el.textContent = (Number.isInteger(num) ? Math.floor(start) : start.toFixed(1)) + suffix;
+                }, step);
+                countObs.unobserve(el);
+            });
+        }, { threshold: 0.5 });
+        counters.forEach(c => countObs.observe(c));
+    </script>
+</body>
 </html>
